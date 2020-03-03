@@ -8,3 +8,18 @@ This program is using the packages with import paths `"fmt"` and `"math/rand"`.
 
 (To see a different number, seed the number generator; see [`rand.Seed`](https://golang.org/pkg/math/rand/#Seed). Time is constant in the playground, so you will need to use something else as the seed.)
 
+## Imports
+
+This code groups the imports into a parenthesized, "factored" import statement.
+
+```go
+import (
+	"fmt"
+	"math"
+)
+```
+
+## Exported names	
+
+In Go, a name is exported if it begins with a capital letter.
+
