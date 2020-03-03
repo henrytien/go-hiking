@@ -4,3 +4,5 @@
  Welcome to a tour of the Go programming language.
 
 [The Go Programming Language](http://www.gopl.io/)
+
+[Goland](https://www.jetbrains.com/help/go/quick-start-guide-goland.html)
