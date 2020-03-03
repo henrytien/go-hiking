@@ -123,3 +123,28 @@ func main()  {
 }
 ```
 
+## Variables with initializers
+
+A var declaration can include initializers, one per variable.
+
+If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
+
+```go
+package main
+
+import "fmt"
+
+var i, j int = 3, 4
+
+func main() {
+	var python, c, java  = true, false ,"yes"
+	fmt.Println(i,j,python,c,java)
+}
+```
+
+output:
+
+```go
+3 4 true false yes
+```
+
