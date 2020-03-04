@@ -342,3 +342,31 @@ v is of type int, value is of 42
 f is of type float64, value is of 42.000000
 ```
 
+## Constants
+
+Constants are declared like variables, but with the `const` keyword.
+
+Constants can be character, string, boolean, or numeric values.
+
+Constants cannot be declared using the `:=` syntax.
+
+```go
+package main
+
+import "fmt"
+
+const Pi = 3.14
+func main() {
+   const Word = "Google"
+   fmt.Println("Hello",Word)
+   fmt.Println("Happy", Pi, "Day")
+}
+```
+
+Output :
+
+```
+Hello Google
+Happy 3.14 Day
+```
+
