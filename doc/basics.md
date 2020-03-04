@@ -948,3 +948,33 @@ Output :
 {1 520}
 ```
 
+## Struct Fields
+
+Struct fields are accessed using a dot.
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct{
+   X int
+   Y int
+}
+
+func main() {
+   v := Vertex{1,4}
+   fmt.Println(v)
+   v.X = 5
+   v.Y = 0
+   fmt.Println(v)
+}
+```
+
+Output :
+
+```
+{1 4}
+{5 0}
+```
+
