@@ -526,3 +526,33 @@ I love mj 616163
 I love mj 61
 ```
 
+## If
+
+Go's `if` statements are like its `for` loops; the expression need not be surrounded by parentheses `( )` but the braces `{ }` are required.
+
+```go
+package main
+
+import (
+   "fmt"
+   "math"
+)
+
+func sqrt(x float64) string {
+   if x < 0 {
+      return sqrt(-x) + "i"
+   }
+   return  fmt.Sprint(math.Sqrt(x))
+}
+
+func main() {
+   fmt.Println(sqrt(520),sqrt(-520))
+}
+```
+
+Output :
+
+```
+22.80350850198276 22.80350850198276i
+```
+
