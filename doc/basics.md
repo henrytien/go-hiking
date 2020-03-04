@@ -765,3 +765,40 @@ Wednesday
 In three days.
 ```
 
+## Switch with no condition
+
+Switch without a condition is the same as `switch true`.
+
+This construct can be a clean way to write long if-then-else chains.
+
+```go
+package main
+
+import (
+   "fmt"
+   "time"
+)
+
+func main() {
+   t := time.Now()
+   fmt.Println(t)
+   fmt.Println(t.Hour(),t.Minute(),t.Second())
+   switch {
+   case t.Hour() < 12:
+      fmt.Println("Good morning!")
+   case t.Hour() < 17:
+      fmt.Println("Good afternoon!")
+   default:
+      fmt.Println("Good evening!")
+   }
+}
+```
+
+Output :
+
+```
+2020-03-04 21:12:06.503189 +0800 CST m=+0.000079829
+21 12 6
+Good evening!
+```
+
