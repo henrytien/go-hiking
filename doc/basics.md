@@ -861,3 +861,90 @@ done
 1
 ```
 
+## Congratulations!
+
+You finished this lesson!
+
+You can go back to the list of [modules](https://tour.golang.org/list) to find what to learn next, or continue with the [next lesson](javascript:click('.next-page'))
+
+## Pointers
+
+Go has pointers. A pointer holds the memory address of a value.
+
+The type `*T` is a pointer to a `T` value. Its zero value is `nil`.
+
+```
+var p *int
+```
+
+The `&` operator generates a pointer to its operand.
+
+```
+i := 42
+p = &i
+```
+
+The `*` operator denotes the pointer's underlying value.
+
+```
+fmt.Println(*p) // read i through the pointer p
+*p = 21         // set i through the pointer p
+```
+
+This is known as "dereferencing" or "indirecting".
+
+Unlike C, Go has no pointer arithmetic.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   i, j := 4, 5
+
+   p := &i          // point to i
+   fmt.Println(*p) // read i through the pointer
+   *p = 32       // set i through the pointer
+   fmt.Println("the new value of i ",i)  // see the new value of i
+
+   p = &j        // point to j
+   *p = *p / 23   // divide j through the pointer
+   fmt.Println("the new value of j ", j)  // see the new value of j
+
+}
+```
+
+Output :
+
+```
+4
+the new value of i  32
+the new value of j  0
+```
+
+## Structs
+
+A `struct` is a collection of fields.
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct{
+   X int
+   Y int
+}
+
+func main() {
+   fmt.Println(Vertex{1,520,})
+}
+```
+
+Output :
+
+```
+{1 520}
+```
+
