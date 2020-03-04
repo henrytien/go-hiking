@@ -498,3 +498,31 @@ Output ：
 1024
 ```
 
+## Forever
+
+If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   i := 0
+   for{
+      i++
+      fmt.Println("I love mj",i)
+   }
+}
+```
+
+Output :
+
+```
+...
+I love mj 616161
+I love mj 616162
+I love mj 616163
+I love mj 61
+```
+
