@@ -1011,3 +1011,39 @@ Output :
 {10 100}
 ```
 
+## Struct Literals
+
+A struct literal denotes a newly allocated struct value by listing the values of its fields.
+
+You can list just a subset of fields by using the `Name:` syntax. (And the order of named fields is irrelevant.)
+
+The special prefix `&` returns a pointer to the struct value.
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct{
+	X, Y int
+}
+
+var(
+
+	v1 = Vertex{X:1}		// Y:0 is implicit
+	v2 = Vertex{}			// X:0 and Y:0
+	p = &Vertex{1,3}	// has type *Vertex
+)
+
+func main() {
+	v := Vertex{1,2}	// has type Vertex
+	fmt.Println(v, v1, v2, p, *p)
+}
+```
+
+Output :
+
+```
+{1 2} {1 0} {0 0} &{1 3} {1 3}
+```
+
