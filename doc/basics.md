@@ -225,3 +225,35 @@ Type: uint64 Value: 18446744073709551615
 Type: complex128 Value: (2+3i)
 ```
 
+## Zero values
+
+Variables declared without an explicit initial value are given their *zero value*.
+
+The zero value is:
+
+`0` for numeric types,
+
+`false` for the boolean type, and
+
+`""` (the empty string) for strings.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var i int
+	var f float64
+	var mj bool
+	var google string
+	fmt.Printf("%v %v %v %q",i, f, mj, google)
+}
+```
+
+Output :
+
+```
+0 0 false ""
+```
+
