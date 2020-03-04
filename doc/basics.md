@@ -1047,3 +1047,42 @@ Output :
 {1 2} {1 0} {0 0} &{1 3} {1 3}
 ```
 
+## Arrays
+
+The type `[n]T` is an array of `n` values of type `T`.
+
+The expression
+
+```
+var a [10]int
+```
+
+declares a variable `a` as an array of ten integers.
+
+An array's length is part of its type, so arrays cannot be resized. This seems limiting, but don't worry; Go provides a convenient way of working with arrays.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   var str [2]string
+   str[0] = "Hello"
+   str[1] = "World"
+   fmt.Println(str[0],str[1])
+   fmt.Println(str)
+
+   primes := [6]int{2,3,5,7,11,13}
+   fmt.Println(primes)
+}
+```
+
+Output :
+
+```
+Hello World
+[Hello World]
+[2 3 5 7 11 13]
+```
+
