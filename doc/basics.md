@@ -593,3 +593,41 @@ Output :
 256 520
 ```
 
+## If and else
+
+Variables declared inside an `if` short statement are also available inside any of the `else` blocks.
+
+(Both calls to `pow` return their results before the call to `fmt.Println` in `main` begins.)
+
+```go
+package main
+
+import (
+   "fmt"
+   "math"
+)
+
+func pow(x , n , lim float64) float64  {
+   if v:= math.Pow(x,n); v < lim{
+      return v
+   }else{
+      fmt.Printf("%g >= %g\n",v,lim)
+   }
+   return lim
+}
+
+func main() {
+   fmt.Println(
+      pow(2,6,40),
+      pow(2,5,520),
+      )
+}
+```
+
+Output :
+
+```
+64 >= 40
+40 32
+```
+
