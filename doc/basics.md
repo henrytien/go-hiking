@@ -1309,3 +1309,43 @@ len=4 cap=7 [2 3 5 7]
 len=2 cap=5 [5 7]
 ```
 
+## Nil slices
+
+The zero value of a slice is `nil`.
+
+A nil slice has a length and capacity of 0 and has no underlying array.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   var s[] int
+   if len(s) == 0{
+      fmt.Println("0")
+   }
+
+   fmt.Println(s,len(s),cap(s))
+
+   if s == nil{
+      fmt.Println("nil!")
+   }
+   // panic: runtime error: index out of range [0] with length 0
+   s[0] = 3
+   fmt.Println(s)
+}
+```
+
+Output :
+
+```
+0
+[] 0 0
+nil!
+panic: runtime error: index out of range [0] with length 0
+
+goroutine 1 [running]:
+main.main()
+```
+
