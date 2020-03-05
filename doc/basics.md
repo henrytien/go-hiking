@@ -1124,3 +1124,45 @@ Output :
 [3 5 7]
 ```
 
+## Slices are like references to arrays
+
+A slice does not store any data, it just describes a section of an underlying array.
+
+Changing the elements of a slice modifies the corresponding elements of its underlying array.
+
+Other slices that share the same underlying array will see those changes.
+
+```go
+package main
+
+import "fmt"
+
+func main(){
+   names := [4]string {
+      "mj",
+      "henry",
+      "lbq",
+      "jy",
+   }
+
+   fmt.Println(names)
+   a := names[0:1]
+   fmt.Println(a)
+   b := names[1:4]
+   fmt.Println(b)
+   b[0] = "henry20"
+   fmt.Println(b)
+   fmt.Println(names)
+}
+```
+
+Output :
+
+```
+[mj henry lbq jy]
+[mj]
+[henry lbq jy]
+[henry20 lbq jy]
+[mj henry20 lbq jy]
+```
+
