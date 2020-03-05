@@ -1166,3 +1166,51 @@ Output :
 [mj henry20 lbq jy]
 ```
 
+## Slice literals
+
+A slice literal is like an array literal without the length.
+
+This is an array literal:
+
+```
+[3]bool{true, true, false}
+```
+
+And this creates the same array as above, then builds a slice that references it:
+
+```
+[]bool{true, true, false}
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   q := []int{3, 7, 9, 11, 13}
+   fmt.Println(q)
+
+   r := []bool{false, true, false, true}
+   fmt.Println(r)
+
+   s := []struct{
+      x int
+      b bool
+   }{
+      {1, false},
+      {2, false},
+      {520, true},
+   }
+   fmt.Println(s)
+}
+```
+
+Output :
+
+```
+[3 7 9 11 13]
+[false true false true]
+[{1 false} {2 false} {520 true}]
+```
+
