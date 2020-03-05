@@ -1404,3 +1404,95 @@ c len=2 cap=5 [0 0]
 d len=3 cap=3 [0 0 0]
 ```
 
+## Slices of slices
+
+Slices can contain any type, including other slices.
+
+```go
+package main
+
+import (
+   "fmt"
+   "strings"
+)
+
+func main() {
+   // creat a tic-tac-toe board.
+   board := [][]string{
+      []string{"_", "_", "_"},
+      []string{"_", "_", "_"},
+      []string{"^", "_", "^"},
+   }
+   // The player takes turns.
+   board[0][0] = "x"
+   board[2][1] = "o"
+   board[1][2] = "o"
+   board[1][0] = "o"
+   board[0][2] = "x"
+
+   for i:=0; i < len(board); i++{
+      fmt.Printf("%s\n", strings.Join(board[i]," "))
+   }
+}
+```
+
+Output :
+
+```
+x _ x
+o _ o
+^ o ^
+```
+
+## Appending to a slice
+
+It is common to append new elements to a slice, and so Go provides a built-in `append` function. The [documentation](https://golang.org/pkg/builtin/#append) of the built-in package describes `append`.
+
+```
+func append(s []T, vs ...T) []T
+```
+
+The first parameter `s` of `append` is a slice of type `T`, and the rest are `T` values to append to the slice.
+
+The resulting value of `append` is a slice containing all the elements of the original slice plus the provided values.
+
+If the backing array of `s` is too small to fit all the given values a bigger array will be allocated. The returned slice will point to the newly allocated array.
+
+(To learn more about slices, read the [Slices: usage and internals](https://blog.golang.org/go-slices-usage-and-internals) article.)
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   var s[]int
+   printSlices(s)
+
+   // append works on nil slices
+   s = append(s, 0)
+   printSlices(s)
+
+   // the slices grows as need
+   s = append(s, 1)
+   printSlices(s)
+
+   // we can add more elements at a time
+   s = append(s, 520,1,1314)
+   printSlices(s)
+}
+
+func printSlices(s []int) {
+   fmt.Printf("len=%d cap=%d %v\n",len(s), cap(s), s)
+}
+```
+
+Output :
+
+```
+len=0 cap=0 []
+len=1 cap=1 [0]
+len=2 cap=2 [0 1]
+len=5 cap=6 [0 1 520 1 1314]
+```
+
