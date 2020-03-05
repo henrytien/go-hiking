@@ -1214,3 +1214,98 @@ Output :
 [{1 false} {2 false} {520 true}]
 ```
 
+## Slice defaults
+
+When slicing, you may omit the high or low bounds to use their defaults instead.
+
+The default is zero for the low bound and the length of the slice for the high bound.
+
+For the array
+
+```
+var a [10]int
+```
+
+these slice expressions are equivalent:
+
+```
+a[0:10]
+a[:10]
+a[0:]
+a[:]
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   s := []int{2, 3, 520 ,11, 13}
+
+   s = s[1:4]
+   fmt.Println(s)
+
+   s = s[:2]
+   fmt.Println(s)
+
+   s = s[1:]
+   fmt.Println(s)
+}
+```
+
+Output :
+
+```
+[3 520 11]
+[3 520]
+[520]
+```
+
+## Slice length and capacity
+
+A slice has both a *length* and a *capacity*.
+
+The length of a slice is the number of elements it contains.
+
+The capacity of a slice is the number of elements in the underlying array, counting from the first element in the slice.
+
+The length and capacity of a slice `s` can be obtained using the expressions `len(s)` and `cap(s)`.
+
+You can extend a slice's length by re-slicing it, provided it has sufficient capacity. Try changing one of the slice operations in the example program to extend it beyond its capacity and see what happens.
+
+```go
+package main
+import "fmt"
+
+func main() {
+   s := []int{2, 3, 5, 7, 11, 13, 520}
+   printSlice(s)
+
+   // Slice the slice to give it zero length.
+   s = s[:0]
+   printSlice(s)
+
+   // Extend its length.
+   s = s[:4]
+   printSlice(s)
+
+   // Drop its first two values.
+   s = s[2:]
+   printSlice(s)
+}
+
+func printSlice(s []int) {
+   fmt.Printf("len=%d cap=%d %v\n",len(s),cap(s),s)
+}
+```
+
+Output :
+
+```
+len=7 cap=7 [2 3 5 7 11 13 520]
+len=0 cap=7 []
+len=4 cap=7 [2 3 5 7]
+len=2 cap=5 [5 7]
+```
+
