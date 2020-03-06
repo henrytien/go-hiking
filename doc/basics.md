@@ -1651,3 +1651,36 @@ map[mj:{2 0}]
 {2 0}
 ```
 
+## Map literals
+
+Map literals are like struct literals, but the keys are required.
+
+```go
+package main
+
+import "fmt"
+
+type Info struct{
+   Name string
+   Id int
+}
+
+var m = map[string]Info{
+   "mj":Info{
+      "mj", 101,
+   },
+   "henry":Info{"henry",100,
+   },
+}
+
+func main()  {
+   fmt.Println(m)
+}
+```
+
+Output :
+
+```
+map[henry:{henry 100} mj:{mj 101}]
+```
+
