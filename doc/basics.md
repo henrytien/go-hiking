@@ -1714,3 +1714,70 @@ Output :
 map[henry:{1 henry} mj:{2 mj}]
 ```
 
+## Mutating Maps
+
+Insert or update an element in map `m`:
+
+```
+m[key] = elem
+```
+
+Retrieve an element:
+
+```
+elem = m[key]
+```
+
+Delete an element:
+
+```
+delete(m, key)
+```
+
+Test that a key is present with a two-value assignment:
+
+```
+elem, ok = m[key]
+```
+
+If `key` is in `m`, `ok` is `true`. If not, `ok` is `false`.
+
+If `key` is not in the map, then `elem` is the zero value for the map's element type.
+
+**Note:** If `elem` or `ok` have not yet been declared you could use a short declaration form:
+
+```
+elem, ok := m[key]
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   m := make(map[string]int)
+   m["mj"] = 520
+   fmt.Println("The value: ", m["mj"])
+
+   m["mj"] = 20
+   fmt.Println("The value: ",m["mj"])
+
+   delete(m,"mj")
+   fmt.Println("The value: ",m["mj"])
+
+   v, ok := m["mj"]
+   fmt.Println("The value ", v, "Present?", ok)
+
+}
+```
+
+Output :
+
+```
+The value:  520
+The value:  20
+The value:  0
+The value  0 Present? false
+```
+
