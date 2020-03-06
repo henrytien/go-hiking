@@ -1684,3 +1684,33 @@ Output :
 map[henry:{henry 100} mj:{mj 101}]
 ```
 
+## Map literals continued
+
+If the top-level type is just a type name, you can omit it from the elements of the literal.
+
+```go
+package main
+
+import "fmt"
+
+type Info struct{
+   Id int
+   Name string
+}
+
+var m = map[string]Info{
+   "henry":{1 ,"henry"},
+   "mj":{2,"mj"},
+}
+
+func main() {
+   fmt.Println(m)
+}
+```
+
+Output :
+
+```
+map[henry:{1 henry} mj:{2 mj}]
+```
+
