@@ -1527,3 +1527,53 @@ Output :
 2**6 = 64
 ```
 
+## Range continued
+
+You can skip the index or value by assigning to `_`.
+
+```
+for i, _ := range pow
+for _, value := range pow
+```
+
+If you only want the index, you can omit the second variable.
+
+```
+for i := range pow
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   pow := make([]int, 10)
+   fmt.Println(pow)
+   // index
+   for i := range pow{
+      pow[i] = 1 << uint(i) // == 2**i
+   }
+   // value
+   for _, value := range pow{
+      fmt.Printf("%d\n", value)
+   }
+}
+```
+
+Output :
+
+```
+[0 0 0 0 0 0 0 0 0 0]
+1
+2
+4
+8
+16
+32
+64
+128
+256
+512
+```
+
