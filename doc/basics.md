@@ -1614,3 +1614,40 @@ Output :
 
 <img src="./images/slices.png" style="zoom:100%;" />
 
+## Maps
+
+A map maps keys to values.
+
+The zero value of a map is `nil`. A `nil` map has no keys, nor can keys be added.
+
+The `make` function returns a map of the given type, initialized and ready for use.
+
+```go
+package main
+
+import "fmt"
+
+type Vetex struct{
+   Lat, Long float64
+}
+
+var m map[string]Vetex
+
+func main() {
+   m = make(map[string]Vetex)
+   m["mj"] = Vetex{
+      Lat: 2,
+      Long: 0,
+   }
+   fmt.Println(m)
+   fmt.Println(m["mj"])
+}
+```
+
+Output :
+
+```
+map[mj:{2 0}]
+{2 0}
+```
+
