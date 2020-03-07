@@ -1908,3 +1908,53 @@ Output :
 45 -90
 ```
 
+## Exercise: Fibonacci closure
+
+Let's have some fun with functions.
+
+Implement a `fibonacci` function that returns a function (a closure) that returns successive [fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) (0, 1, 1, 2, 3, 5, ...).
+
+```go
+package main
+
+import "fmt"
+
+// fibonacci is a function that returns
+// a function that return an int.
+func fibonacci() func() int {
+   a, b := 0,1
+   return func() int {
+      a,b = b, a + b
+      return a
+   }
+}
+
+func main() {
+   f := fibonacci()
+   for i:= 0; i < 10; i++{
+      fmt.Println(f())
+   }
+}
+```
+
+Output :
+
+```
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+```
+
+## Congratulations!
+
+You finished this lesson!
+
+You can go back to the list of [modules](https://tour.golang.org/list) to find what to learn next, or continue with the [next lesson](javascript:click('.next-page')).
+
