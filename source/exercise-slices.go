@@ -1,7 +1,7 @@
 /**
  * @Author: Henry
  * @Description:
- * @File:  exersise-slices.go
+ * @File:  exercise-slices.go
  * @Version: 1.0.0
  * @Date: 2020/3/6 4:04 PM
  */
