@@ -22,6 +22,6 @@ func main() {
 	pos , neg := adder(), adder()
 	for i:= 0; i < 10; i++{
 		fmt.Println(pos(i),
-			neg(i))
+			neg(-2*i))
 	}
 }
