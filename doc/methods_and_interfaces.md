@@ -197,3 +197,133 @@ Output :
 20
 ```
 
+## Methods and pointer indirection
+
+Comparing the previous two programs, you might notice that functions with a pointer argument must take a pointer:
+
+```
+var v Vertex
+ScaleFunc(v, 5)  // Compile error!
+ScaleFunc(&v, 5) // OK
+```
+
+while methods with pointer receivers take either a value or a pointer as the receiver when they are called:
+
+```
+var v Vertex
+v.Scale(5)  // OK
+p := &v
+p.Scale(10) // OK
+```
+
+For the statement `v.Scale(5)`, even though `v` is a value and not a pointer, the method with the pointer receiver is called automatically. That is, as a convenience, Go interprets the statement `v.Scale(5)` as `(&v).Scale(5)` since the `Scale` method has a pointer receiver.
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct {
+   X ,Y float64
+}
+
+func (v *Vertex) Scale(f float64) {
+   v.X = v.X * f
+   v.Y = v.Y * f
+}
+
+func ScalFunc(v *Vertex, f float64) {
+   v.X = v.X * f
+   v.Y = v.Y * f
+}
+
+func main() {
+   v := Vertex{3,4}
+   v.Scale(4)
+   ScalFunc(&v,4)
+
+   fmt.Println(v)
+
+   p := &Vertex{3,4}
+   p.Scale(4)
+   ScalFunc(p,4)
+   fmt.Println(p)
+   fmt.Println(*p)
+
+}
+```
+
+Output :
+
+```
+{48 64}
+&{48 64}
+{48 64}
+```
+
+## Methods and pointer indirection (2)
+
+The equivalent thing happens in the reverse direction.
+
+Functions that take a value argument must take a value of that specific type:
+
+```
+var v Vertex
+fmt.Println(AbsFunc(v))  // OK
+fmt.Println(AbsFunc(&v)) // Compile error!
+```
+
+while methods with value receivers take either a value or a pointer as the receiver when they are called:
+
+```
+var v Vertex
+fmt.Println(v.Abs()) // OK
+p := &v
+fmt.Println(p.Abs()) // OK
+```
+
+In this case, the method call `p.Abs()` is interpreted as `(*p).Abs()`.
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct {
+   X , Y float64
+}
+
+func (v *Vertex) Scale(f float64) {
+   v.X = v.X * f
+   v.Y = v.Y * f
+}
+
+func ScaleFunc(v Vertex, f float64) Vertex {
+   v.X = v.X * f
+   v.Y = v.Y * f
+   return v
+}
+
+func main() {
+   v := Vertex{3,4}
+   v.Scale(4)
+   fmt.Println(v)
+   fmt.Println(ScaleFunc(v,4))
+
+   p := &Vertex{3,4}
+   p.Scale(4)
+   fmt.Println(p)
+   fmt.Println(ScaleFunc(*p,4))
+
+}
+```
+
+Output :
+
+```
+{12 16}
+{48 64}
+&{12 16}
+{48 64}
+```
+
