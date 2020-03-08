@@ -1155,3 +1155,91 @@ Output :
 URYYB, zw
 ```
 
+## Images
+
+[Package image](https://golang.org/pkg/image/#Image) defines the `Image` interface:
+
+```
+package image
+
+type Image interface {
+    ColorModel() color.Model
+    Bounds() Rectangle
+    At(x, y int) color.Color
+}
+```
+
+**Note**: the `Rectangle` return value of the `Bounds` method is actually an [`image.Rectangle`](https://golang.org/pkg/image/#Rectangle), as the declaration is inside package `image`.
+
+(See [the documentation](https://golang.org/pkg/image/#Image) for all the details.)
+
+The `color.Color` and `color.Model` types are also interfaces, but we'll ignore that by using the predefined implementations `color.RGBA` and `color.RGBAModel`. These interfaces and types are specified by the [image/color package](https://golang.org/pkg/image/color/)
+
+```go
+package main
+
+import (
+   "fmt"
+   "image"
+)
+
+func main() {
+   m := image.NewRGBA(image.Rect(0,0,100,100))
+   fmt.Println(m.Bounds())
+   fmt.Println(m.At(0,0).RGBA())
+}
+```
+
+Output :
+
+```
+(0,0)-(100,100)
+0 0 0 0
+```
+
+## Exercise: Images
+
+Remember the [picture generator](https://tour.golang.org/moretypes/18) you wrote earlier? Let's write another one, but this time it will return an implementation of `image.Image` instead of a slice of data.
+
+Define your own `Image` type, implement [the necessary methods](https://golang.org/pkg/image/#Image), and call `pic.ShowImage`.
+
+`Bounds` should return a `image.Rectangle`, like `image.Rect(0, 0, w, h)`.
+
+`ColorModel` should return `color.RGBAModel`.
+
+`At` should return a color; the value `v` in the last picture generator corresponds to `color.RGBA{v, v, 255, 255}` in this one.
+
+```go
+package main
+
+import (
+   "golang.org/x/tour/pic"
+   "image"
+   "image/color"
+)
+
+type Image struct{}
+
+func (img Image) ColorModel() color.Model {
+   return color.RGBAModel
+}
+
+func (img Image) Bounds() image.Rectangle {
+   return image.Rect(0, 0, 255, 255)
+}
+
+func (img Image) At(x, y int) color.Color {
+   v := uint8((x + y) / 2)
+   return color.RGBA{v, v, 255, 255}
+}
+
+func main() {
+   m := Image{}
+   pic.ShowImage(m)
+}
+```
+
+Output:
+
+<img src="./images/exerciseimage.png" style="zoom:80%;" />
+
