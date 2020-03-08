@@ -802,3 +802,42 @@ Third 520 is 1560
 I don't know about type bool
 ```
 
+## Stringers
+
+One of the most ubiquitous interfaces is [`Stringer`](https://golang.org/pkg/fmt/#Stringer) defined by the [`fmt`](https://golang.org/pkg/fmt/) package.
+
+```
+type Stringer interface {
+    String() string
+}
+```
+
+A `Stringer` is a type that can describe itself as a string. The `fmt` package (and many others) look for this interface to print values.
+
+```go
+package main
+
+import "fmt"
+
+type Person struct{
+   Name string
+   Age int
+}
+
+func (p Person)String() string{
+   return fmt.Sprintf("%v (%v years)",p.Name, p.Age)
+}
+
+func main() {
+   m := Person{"mj", 18}
+   h := Person{"henry",25}
+   fmt.Println(m,h)
+}
+```
+
+Output :
+
+```
+mj (18 years) henry (25 years)
+```
+
