@@ -594,3 +594,56 @@ Output :
 mj
 ```
 
+## Nil interface values
+
+A nil interface value holds neither value nor concrete type.
+
+Calling a method on a nil interface is a run-time error because there is no type inside the interface tuple to indicate which *concrete* method to call.
+
+```go
+package main
+
+import "fmt"
+
+type I interface {
+   M()
+}
+
+type T struct {
+   S string
+}
+
+func (t *T) M()  {
+   //if t == nil{
+   // return
+   //}
+   fmt.Println(t.S)
+}
+
+func main() {
+   var i I
+   describe(i)
+   var t *T
+   describe(t)
+   i = t
+   i.M()
+}
+
+func describe(i I) {
+   fmt.Printf("(%v, %T)", i ,i)
+}
+```
+
+Output :
+
+```
+(<nil>, <nil>)(<nil>, *main.T)panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x109ea26]
+
+goroutine 1 [running]:
+main.(*T).M(0x0)
+        /Users/henry/go/src/awesomeProject/nil-interface-values.go:25 +0x26
+main.main()
+        /Users/henry/go/src/awesomeProject/nil-interface-values.go:34 +0x123
+```
+
