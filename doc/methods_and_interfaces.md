@@ -1243,3 +1243,8 @@ Output:
 
 <img src="./images/exerciseimage.png" style="zoom:80%;" />
 
+## Congratulations!
+
+You finished this lesson!
+
+You can go back to the list of [modules](https://tour.golang.org/list) to find what to learn next, or continue with the [next lesson](javascript:click('.next-page')).
