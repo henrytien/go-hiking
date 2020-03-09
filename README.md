@@ -8,4 +8,7 @@
 [Goland](https://www.jetbrains.com/help/go/quick-start-guide-goland.html)
 
 ## Doc  
-[Basics](https://github.com/henrytien/go/blob/master/doc/basics.md) 
+[Basics](https://github.com/henrytien/go/blob/master/doc/basics.md)   
+[Methods and Interfaces](https://github.com/henrytien/go/blob/master/doc/methods_and_interfaces.md)  
+[Concurrency](https://github.com/henrytien/go/blob/master/doc/concurrency.md)
+
