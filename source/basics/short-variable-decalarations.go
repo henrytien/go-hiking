@@ -11,7 +11,8 @@ package main
 import "fmt"
 
 func main() {
-	var i, j int = 3, 4
-	c, python, cplusplus := "c", "python", "cplusplus"
-	fmt.Println(i, j, c, python, cplusplus)
+	var i, j int = 1, 2
+	k := 3
+	c, python, cplusplus := true, false, "cplusplus"
+	fmt.Println(i, j, k, c, python, cplusplus)
 }
